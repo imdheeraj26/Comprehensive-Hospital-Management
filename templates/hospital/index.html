@@ -1,0 +1,576 @@
+{% extends 'hospital/homebase.html' %} 
+{% load static %}
+
+{% block content %}
+<head>
+  <style>
+    .header_section {
+      width: 100%;
+      float: left;
+      background-image: url('{% static "images/bg7.jpg" %}');
+      height: auto;
+      background-size: cover;
+      padding: 10px 0px 25px 0px;
+      background-repeat: no-repeat;
+      position: relative;
+      margin-bottom: 30px;
+    }
+
+    .carousel-item img {
+      width: 100%;
+      height: 100vh;
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+    .carousel-inner .carousel-item {
+      transition: transform 1s ease-in-out;
+    }
+
+    .emergency-container {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      text-align: right;
+      color: white;
+    }
+
+    .emergency-container h3 {
+      margin-bottom: 10px;
+    }
+
+    .alert {
+      margin: 0px;
+    }
+
+    .glow {
+      font-size: 50px;
+      color: white;
+      text-align: center;
+      -webkit-animation: glow 1s ease-in-out infinite alternate;
+      -moz-animation: glow 1s ease-in-out infinite alternate;
+      animation: glow 1s ease-in-out infinite alternate;
+    }
+    .service-item {
+    transition: .5s;
+}
+
+.service-item:hover {
+    margin-top: -10px;
+    box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .08);
+}
+
+.service-item .btn {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    background: #165a2a;
+    border-radius: 40px;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: .5s;
+}
+
+.service-item:hover .btn {
+    width: 140px;
+}
+.team-thumb {
+    background-color: #f9f9f9;
+    border-radius: 0 0 10px 10px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+  .team-thumb:hover {
+    transform: scale(1.05); /* Slight zoom-in effect */
+}
+
+  .team-info {
+    padding: 20px 30px 0 30px;
+  }
+
+  .team-contact-info {
+    border-top: 1px solid #e9e9e9;
+    padding-top: 1.2em;
+    margin-top: 1.5em;
+  }
+
+  .team-contact-info .fa {
+    margin-right: 5px;
+    display: inline-block;
+  }
+
+  .team-contact-info p {
+    margin-bottom: 2px;
+  }
+
+  .team-contact-info a {
+    color: #757575;
+  }
+
+  .team-thumb .social-icon li {
+    font-weight: 500;
+  }
+
+  .team-thumb .social-icon li a {
+    background: #ffffff;
+    border-radius: 100%;
+    font-size: 20px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    margin: 0 2px 0 2px;
+  }
+
+  .team-thumb .social-icon {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    text-align: center;
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+  .team-thumb:hover .social-icon {
+    opacity: 1;
+    transition-delay: 0.3s;
+    transform: translateY(0px);
+    top: -22em;
+    
+  }
+  .logos img {
+    margin: auto;
+    display: block;
+    text-align: center;
+    width: 100%;
+    opacity: 0.3;
+  
+}
+
+.logos img:hover {
+    opacity: 0.5;
+}
+
+.desc h3 i {
+    color: #dbcdcd;
+    font-size: 37px;
+    vertical-align: middle;
+    margin-right: 12px;
+}
+
+.desc {
+    padding: 30px;
+    position: relative;
+    background: #434545;
+    border: 1px solid #111111;
+}
+
+.testi-meta {
+    display: block;
+    margin-top: 20px;
+}
+
+.testimonial h4 {
+    font-size: 18px;
+    color: #ffffff;
+    padding: 13px 0 0;
+}
+
+.testimonial img {
+    max-width: 55px;
+}
+
+.testimonial small {
+    margin-top: 7px;
+    font-size: 16px;
+    display: block;
+}
+
+.testimonial {
+    background-color: transparent;
+}
+
+.testimonial h3 {
+    padding: 0 0 10px;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.testimonial small,
+.testimonial .lead {
+    background-color: transparent;
+    color: #aaa;
+    display: block;
+    font-size: 16px;
+    font-style: italic;
+    line-height: 30px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.testimonial p:after {
+    display: none;
+}
+.heading {
+       text-align: center; /* Centers the icon and heading */
+   }
+   .icon-logo img {
+       margin-top: 7px;
+       display: block;
+       margin: 0 auto; /* Centers the image */
+   }
+  </style>
+</head>
+
+<!-- Hero Section -->
+<div class="header_section">
+  <div id="main_slider" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="banner_section">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <h1 class="banner_taital" style="font-size: 60px; font-weight: bold;">
+                  <span style="color: #165a2a;">Health</span> <br>
+                  <span style="color: #151515;">Care</span>
+                </h1>
+                <p class="banner_text" style="font-size: 20px; font-weight: bold;">"Caring for you, powered by technology.  Your health, our priority."</p>
+              </div>
+              
+              <div class="col-md-6">
+                <div class="image_1"><img src="{% static 'images/img4.jpg' %}" alt="Image 1"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="banner_section">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <h1 class="banner_taital" style="font-size: 60px; font-weight: bold;">
+                  <span style="color: #165a2a;">Health</span> <br>
+                  <span style="color: #151515;">Care</span>
+                </h1>
+                <p class="banner_text" style="font-size: 20px; font-weight: bold;">"Seamless healthcare, one click away. Bridging patients and care with innovation."</p>
+              </div>
+              <div class="col-md-6">
+                <div class="image_1"><img src="{% static 'images/img2.jpg' %}" alt="Image 2"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="banner_section">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <h1 class="banner_taital" style="font-size: 60px; font-weight: bold;">
+                  <span style="color: #165a2a;">Health</span> <br>
+                  <span style="color: #151515;">Care</span>
+                </h1>
+                <p class="banner_text" style="font-size: 20px; font-weight: bold;">"Your wellness, our mission. Smart solutions for a healthier tomorrow."</p>
+              </div>
+              <div class="col-md-6">
+                <div class="image_1"><img src="{% static 'images/img5.jpg' %}" alt="Image 3"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
+      <i class="fa fa-long-arrow-left" style="font-size:24px; padding-top: 4px;"></i>
+    </a>
+    <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
+      <i class="fa fa-long-arrow-right" style="font-size:24px; padding-top: 4px;"></i>
+    </a>
+  </div>
+</div>
+<!-- Hero Section End-->
+<div class="container-xxl py-5">
+  <div class="text-center mx-auto mb-5" style="max-width: 600px;">
+    <p class="d-inline-block border rounded-pill py-1 px-4" style="font-size: 1.2rem;">Services</p>
+    <h1>Health Care Solutions</h1>
+</div>
+
+
+  
+<div class="row g-4">
+  <div class="col-lg-4 col-md-6">
+      <div class="service-item rounded h-100 p-5" style="background-color: #86dcd2; color: white;">
+          <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+              <i class="fa fa-heartbeat text-primary fs-4"></i>
+          </div>
+          <h4 class="mb-3">Cardiology</h4>
+          <p class="mb-4">Diagnosis and treatment of heart and circulatory system disorders.</p>
+          <a class="btn" href="" style="color: white;"><i class="fa fa-plus text-primary me-3"></i>Read More</a>
+      </div>
+  </div>
+  <div class="col-lg-4 col-md-6">
+      <div class="service-item rounded h-100 p-5" style="background-color: #86dcd2; color: white;">
+        <!-- <div class="service-item rounded h-100 p-5" style="background-color: ; color: white;"> -->
+          <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+              <i class="fa fa-heartbeat text-primary fs-4"></i>
+          </div>
+          <h4 class="mb-3">Radiotherapy</h4>
+          <p class="mb-4">Maintenance of oral health through preventative and restorative procedures.</p>
+          <a class="btn" href="" style="color: white;"><i class="fa fa-plus text-primary me-3"></i>Read More</a>
+      </div>
+  </div>
+  <div class="col-lg-4 col-md-6">
+      <div class="service-item rounded h-100 p-5" style="background-color: #86dcd2; color: white;">
+        <!-- <div class="service-item rounded h-100 p-5" style="background-color: ; color: white;"> -->
+          <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+              <i class="fa fa-heartbeat text-primary fs-4"></i>
+          </div>
+          <h4 class="mb-3">Hematology</h4>
+          <p class="mb-4">Comprehensive health assessment for overall well-being and early detection.</p>
+          <a class="btn" href="" style="color: white;"><i class="fa fa-plus text-primary me-3"></i>Read More</a>
+      </div>
+  </div>
+  <div class="col-lg-4 col-md-6">
+      <div class="service-item rounded h-100 p-5" style="background-color: #86dcd2; color: white;">
+        <!-- <div class="service-item rounded h-100 p-5" style="background-color: ; color: white;"> -->
+          <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+              <i class="fa fa-heartbeat text-primary fs-4"></i>
+          </div>
+          <h4 class="mb-3">Orthopedics</h4>
+          <p class="mb-4">Treatment of musculoskeletal system injuries and conditions.</p>
+          <a class="btn" href="" style="color: white;"><i class="fa fa-plus text-primary me-3"></i>Read More</a>
+      </div>
+  </div>
+  <div class="col-lg-4 col-md-6">
+      <div class="service-item rounded h-100 p-5" style="background-color: #86dcd2; color: white;">
+        <!-- <div class="service-item rounded h-100 p-5" style="background-color: ; color: white;"> -->
+          <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+              <i class="fa fa-heartbeat text-primary fs-4"></i>
+          </div>
+          <h4 class="mb-3">Pediatrics</h4>
+          <p class="mb-4">Medical care for infants, children, and adolescents.</p>
+          <a class="btn" href="" style="color: white;"><i class="fa fa-plus text-primary me-3"></i>Read More</a>
+      </div>
+  </div>
+  <div class="col-lg-4 col-md-6">
+      <div class="service-item rounded h-100 p-5" style="background-color: #86dcd2; color: white;">
+        <!-- <div class="service-item rounded h-100 p-5" style="background-color: ; color: white;"> -->
+          <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+              <i class="fa fa-heartbeat text-primary fs-4"></i>
+          </div>
+          <h4 class="mb-3">Nuclear Medicine</h4>
+          <p class="mb-4">Erat ipsum justo amet duo et elitr dolor.</p>
+          <a class="btn" href="" style="color: white;"><i class="fa fa-plus text-primary me-3"></i>Read More</a>
+      </div>
+  </div>
+  <div class="col-lg-4 col-md-6">
+    <div class="service-item rounded h-100 p-5" style="background-color: #86dcd2; color: white;">
+      <!-- <div class="service-item rounded h-100 p-5" style="background-color: ; color: white;"> -->
+        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+            <i class="fa fa-heartbeat text-primary fs-4"></i>
+        </div>
+        <h4 class="mb-3">Endocrinology</h4>
+        <p class="mb-4">Medical care for infants, children, and adolescents.</p>
+        <a class="btn" href="" style="color: white;"><i class="fa fa-plus text-primary me-3"></i>Read More</a>
+    </div>
+  </div>
+  <div class="col-lg-4 col-md-6">
+    <div class="service-item rounded h-100 p-5" style="background-color: #86dcd2; color: white;">
+      <!-- <div class="service-item rounded h-100 p-5" style="background-color: ; color: white;"> -->
+        <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+            <i class="fa fa-heartbeat text-primary fs-4"></i>
+        </div>
+        <h4 class="mb-3">Neurology</h4>
+        <p class="mb-4">Medical care for infants, children, and adolescents.</p>
+        <a class="btn" href="" style="color: white;"><i class="fa fa-plus text-primary me-3"></i>Read More</a>
+    </div>
+</div>
+<div class="col-lg-4 col-md-6">
+  <div class="service-item rounded h-100 p-5" style="background-color: #86dcd2; color: white;">
+    <!-- <div class="service-item rounded h-100 p-5" style="background-color: ; color: white;"> -->
+      <div class="d-inline-flex align-items-center justify-content-center bg-white rounded-circle mb-4" style="width: 65px; height: 65px;">
+          <i class="fa fa-heartbeat text-primary fs-4"></i>
+      </div>
+      <h4 class="mb-3">Nephrology</h4>
+      <p class="mb-4">Medical care for infants, children, and adolescents.</p>
+      <a class="btn" href="" style="color: white;"><i class="fa fa-plus text-primary me-3"></i>Read More</a>
+  </div>
+</div>
+  </div>
+  </div>
+</div>
+
+<div id="doctors" class="parallax section db" data-stellar-background-ratio="0.4" style="background:#fff; width: 100%;" data-scroll-id="doctors" tabindex="-1">
+  <div class="container-fluid">
+    <div class="text-center mx-auto mb-5" style="max-width: 600px;">
+      <p class="d-inline-block border rounded-pill py-1 px-4" style="font-size: 1.2rem;">Our Experts</p>
+      <h1>Meet Our Team</h1>
+  </div>
+
+      <div class="row dev-list text-center">
+          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.2s; animation-name: fadeIn;">
+              <div class="widget clearfix">
+                  <img src="{% static 'images/doctor.png' %}" alt="" class="img-responsive img-rounded">
+                  <div class="widget-title">
+                      <h3>Ritik Raj</h3>
+                      <small>Cardiology Expert</small>
+                  </div>
+                  <p>A leading heart specialist with 20+ years of experience, expert in angioplasty, cardiac surgeries, and heart disease management.</p>
+
+                  <div class="footer-social">
+                      <a href="#" class="btn grd1"><i class="fa fa-facebook"></i></a>
+                      <a href="#" class="btn grd1"><i class="fa fa-github"></i></a>
+                      <a href="#" class="btn grd1"><i class="fa fa-twitter"></i></a>
+                      <a href="#" class="btn grd1"><i class="fa fa-linkedin"></i></a>
+                  </div>
+              </div></div><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.4s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.4s; animation-name: fadeIn;">
+              <div class="widget clearfix">
+                  <img src="{% static 'images/doctor.png' %}" alt="" class="img-responsive img-rounded">
+                  <div class="widget-title">
+                      <h3>Pravin Kumar</h3>
+                      <small>Nephrology Expert</small>
+                  </div>
+                  <p>I am Pravin from Patna. I am expert in Nephrology along with the Neorology.</p>
+
+                  <div class="footer-social">
+                      <a href="#" class="btn grd1"><i class="fa fa-facebook"></i></a>
+                      <a href="#" class="btn grd1"><i class="fa fa-github"></i></a>
+                      <a href="#" class="btn grd1"><i class="fa fa-twitter"></i></a>
+                      <a href="#" class="btn grd1"><i class="fa fa-linkedin"></i></a>
+                  </div>
+              </div></div><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 wow fadeIn">
+              <div class="widget clearfix">
+                  <img src="{% static 'images/doctor.png' %}" alt="" class="img-responsive img-rounded">
+                  <div class="widget-title">
+                      <h3>Manish Kumar</h3>
+                      <small>Director</small>
+                  </div>
+                  <p>I am Manish from Siwan. I am senior director and founder of CDHMS.</p>
+
+                  <div class="footer-social">
+                      <a href="#" class="btn grd1"><i class="fa fa-facebook"></i></a>
+                      <a href="#" class="btn grd1"><i class="fa fa-github"></i></a>
+                      <a href="#" class="btn grd1"><i class="fa fa-twitter"></i></a>
+                      <a href="#" class="btn grd1"><i class="fa fa-linkedin"></i></a>
+                  </div>
+              </div></div></div></div></div>
+
+
+              <div class="container" style="margin-bottom: 50px;"> 
+                <div class="text-center mx-auto mb-5" style="max-width: 600px;">
+                    <p class="d-inline-block border rounded-pill py-1 px-4" style="font-size: 1.2rem;">About Us</p>
+                    <h1>What We Do</h1>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="message-box">
+                            <p class="lead">Our hospital is committed to providing advanced, reliable, and patient-centered healthcare with specialized departments. We are equipped with modern technology, experienced doctors, and well-maintained facilities. We ensure efficient treatment, seamless digital services, and a clean, safe environment as your health and well-being are our top priorities.</p>
+                            <div id="more-info" style="display: none;">
+                                <p>Supports Cardiology, Radiotherapy, Hematology, Pediatrics, Orthopedics, Nuclear Medicine, Endocrinology, Neurology, and Nephrology for complete patient care.</p>
+                                <p>Automates billing, inventory, patient records, and staff scheduling, ensuring smooth operations.</p>
+                                <p>Our hospital maintains high standards of cleanliness and hygiene, ensuring a safe and healthy space for patients and staff.</p>
+                                <p>Equipped with advanced medical technologies and necessary machines to provide accurate diagnostics and treatments.</p>
+                                <p>Our doctors, nurses, and medical staff are well-trained, knowledgeable, and experienced, ensuring the best patient care.</p>
+                                <p>The hospital is designed with dedicated departments, specialized labs, and well-maintained facilities for smooth operations.</p>
+                                <p>We prioritize patient satisfaction, timely medical care, and 24/7 availability, making our hospital more reliable and efficient.</p>
+                            </div>
+                            <button id="learnMoreBtn" class="btn btn-light btn-radius btn-brd grd1 effect-1">Learn More</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="post-media wow fadeIn">
+                            <img src="{% static 'images/img6.jpg' %}" alt="About Us" width="600" height="340" class="img-fluid rounded">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <script>
+                document.getElementById("learnMoreBtn").addEventListener("click", function() {
+                    var moreInfo = document.getElementById("more-info");
+                    if (moreInfo.style.display === "none") {
+                        moreInfo.style.display = "block";
+                        this.textContent = "Show Less";
+                    } else {
+                        moreInfo.style.display = "none";
+                        this.textContent = "Learn More";
+                    }
+                });
+            </script>
+            
+            
+            <!-- Added margin-top to create space before the Testimonials section -->
+            <div id="testimonials" class="section wb wow fadeIn" style="margin-top: 50px;">
+                <div class="container">
+                    <div class="text-center mx-auto mb-5" style="max-width: 600px;">
+                        <p class="d-inline-block border rounded-pill py-1 px-4" style="font-size: 1.2rem;">Testimonials</p>
+                        <h1>Review Matters!!</h1>
+                    </div>
+                    <!-- Testimonials content remains unchanged -->
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s">
+                            <div class="testimonial clearfix">
+                                <div class="desc">
+                                    <h3><i class="fa fa-quote-left"></i> The amazing clinic! Wonderful Support!</h3>
+                                    <p class="lead">The hospital management system has made my experience seamless! Booking appointments is so easy, and I can access my medical history with just a few clicks. The reminders for upcoming visits are super helpful. Highly recommended!</p>
+                                </div>
+                                <div class="testi-meta">
+                                    <img src="{% static 'images/test1.png' %}" class="img-responsive alignleft">
+                                    <h4>Devashish Raj<small>- Devashish Raj</small></h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.4s">
+                            <div class="testimonial clearfix">
+                                <div class="desc">
+                                    <h3><i class="fa fa-quote-left"></i> Thanks for Help us!</h3>
+                                    <p class="lead">I was able to schedule a video consultation with my doctor without any hassle. The system is fast, and I received my e-prescription instantly. No more waiting in long queues! This has truly improved healthcare accessibility</p>
+                                </div>
+                                <div class="testi-meta">
+                                    <img src="{% static 'images/test2.png' %}" class="img-responsive alignleft">
+                                    <h4>Mannat Rawat <small>- Ankit Kumar</small></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="invis">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.6s">
+                            <div class="testimonial clearfix">
+                                <div class="desc">
+                                    <h3><i class="fa fa-quote-left"></i> The amazing clinic! Wonderful Support!</h3>
+                                    <p class="lead">Earlier, getting my test reports required multiple visits to the hospital, but now I can check them online from home. The system is well-organized, and everything is available in one place. A great digital transformation in healthcare.</p>
+                                </div>
+                                <div class="testi-meta">
+                                    <img src="{% static 'images/test3.png' %}" class="img-responsive alignleft">
+                                    <h4>Aditya Kumar<small> Aditya Kumar</small></h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.8s">
+                            <div class="testimonial clearfix">
+                                <div class="desc">
+                                    <h3><i class="fa fa-quote-left"></i> Thanks for Help us!</h3>
+                                    <p class="lead">The system ensures all my health records are safe and secure. I can track my previous diagnoses, medications, and even get health recommendations. It's like having a personal health assistant! Very satisfied with the experience.</p>
+                                </div>
+                                <div class="testi-meta">
+                                    <img src="{% static 'images/test4.png' %}" class="img-responsive alignleft">
+                                    <h4> Deepak Kumar<small> Deepak Kumar</small></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      
+
+
+{% include "hospital/admin_doctor_patient_card.html" %}
+{% endblock content %}

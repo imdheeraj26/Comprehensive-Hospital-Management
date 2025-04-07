@@ -1,0 +1,50 @@
+{% extends 'hospital/homebase.html' %}
+
+{% block content %}
+
+<style>
+  /* Full-screen layout */
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Main container with background image */
+  .main-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('/static/images/img9.jpg'); /* Update path as needed */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  /* Centered content box */
+  .content-box {
+    background: rgba(255, 255, 255, 0.85); /* Semi-transparent white */
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+</style>
+
+<!-- Main Container -->
+<div class="main-container">
+  <div class="content-box">
+    <h1 class="display-4">Hello, Doctor</h1>
+    <p class="lead">Welcome to HospEase</p>
+    <hr class="my-4">
+    <p>You can access various features after Login/SignUp.</p>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="/doctorsignup" role="button">Apply</a>
+      <a class="btn btn-primary btn-lg" href="/doctorlogin" role="button">Login</a>
+    </p>
+  </div>
+</div>
+
+{% endblock content %}

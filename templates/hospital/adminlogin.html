@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+{% load widget_tweaks %}
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>CDHMS</title>
+
+  <style type="text/css">
+    body {
+      color: #aa082e;
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    a:link {
+      text-decoration: none;
+    }
+
+    /* Background container */
+    .background-container {
+      width: 100%;
+      height: 100vh;
+      background-image: url('/static/images/bg7.jpg'); /* Update path as needed */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Login form container */
+    .form-container {
+      width: 40%;
+      background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    .note {
+      text-align: center;
+      height: 50px;
+      background: linear-gradient(to right, #c9dcf3, #137731);
+      color: #fff;
+      font-weight: bold;
+      line-height: 60px;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .form-control {
+      border-radius: 1.5rem;
+    }
+
+    .btnSubmit {
+      border: none;
+      border-radius: 1.5rem;
+      padding: 10px;
+      width: 100%;
+      cursor: pointer;
+      background: #137731;
+      color: #fff;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+
+    .btnSubmit:hover {
+      background: #004a99;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  {% include "hospital/navbar.html" %}
+
+  <div class="background-container">
+    <div class="form-container">
+      <div class="note">
+        <p>Admin Login Page</p>
+      </div>
+
+      <form method="post">
+        {% csrf_token %}
+        <div class="form-content">
+          <div class="form-group">
+            {% render_field form.username class="form-control" placeholder="Username" %}
+          </div>
+
+          <div class="form-group">
+            {% render_field form.password class="form-control" placeholder="Password" %}
+          </div>
+
+          <button type="submit" class="btnSubmit">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  {% include "hospital/footer.html" %}
+
+</body>
+
+</html>
